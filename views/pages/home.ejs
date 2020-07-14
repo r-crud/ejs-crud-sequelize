@@ -10,16 +10,44 @@
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
     />
+    <script src="https://use.fontawesome.com/ef830f6f27.js"></script>
   </head>
   <body>
     <div class="container">
       <div class="jumbotron">
-        <h1 class="display-4">Welcome to Tokoku API</h1>
-        <p class="lead">In this blablabla</p>
-        <hr class="my-4" />
-        <p>Available routes:</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        <h1 class="display-4">Tokoku</h1>
+        <p class="lead">Dashboard admin untuk mengelola data toko</p>
       </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Item</th>
+            <th scope="col">Type</th>
+            <th scope="col">Price</th>
+            <th scope="col">Edit / Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% results.map(product => { %>
+          <tr>
+            <th scope="row"><%= product.idproducts %></th>
+            <td><%= product.name_products %></td>
+            <td><%= product.type %></td>
+            <td><%= product.price %></td>
+            <td>
+              <button type="button" class="btn btn-primary btn-sm">
+                <i class="fa fa-pencil-square-o"> Edit</i>
+              </button>
+              <button type="button" class="btn btn-danger btn-sm">
+                <i class="fa fa-minus-circle"> Delete</i>
+              </button>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
     </div>
 
     <script
