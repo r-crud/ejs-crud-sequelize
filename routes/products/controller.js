@@ -4,13 +4,12 @@ module.exports = {
     try {
       const results = await Products.findAll();
 
-      res.send({
-        results,
-      });
+      res.send(results);
     } catch (error) {
       res.send(error);
     }
   },
+
   updateProducts: async (req, res) => {
     const { id } = req.params;
     const { name_products, type, price } = req.body;
