@@ -10,9 +10,9 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 app.get("/", (req, res) => {
-  res.send(`Welcome to sequelie & express demo`);
+  res.send(`Welcome REST API`);
 });
-app.use("/api/products", require("./routes/products"));
+app.use("/products", require("./routes/products"));
 
 if (db) {
   app.listen(localPort, (req, res) => {
