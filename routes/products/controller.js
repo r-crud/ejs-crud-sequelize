@@ -1,8 +1,8 @@
-const { User } = require("../../models");
+const { Products } = require("../../models");
 module.exports = {
-  getAllUsers: async (req, res) => {
+  getAllProducts: async (req, res) => {
     try {
-      const results = await User.findAll();
+      const results = await Products.findAll();
 
       res.send({
         results,
@@ -11,25 +11,40 @@ module.exports = {
       res.send(error);
     }
   },
-  getUserProfile: async (req, res) => {
-    const { id } = req.params;
+  getProductName: async (req, res) => {
+    const { name_products } = req.body;
     try {
-      const result = await User.findByPk(id);
+      const result = await Products.findAll({
+        where: { name_products: name_products },
+      });
 
-      res.send(result);
+      res.send({ result });
     } catch (error) {
       res.send(error);
     }
   },
 
-  userRegistration: async (req, res) => {
-    const { full_name, email, password } = req.body;
+  getProductType: async (req, res) => {
+    const { type } = req.body;
+    try {
+      const result = await Products.findAll({
+        where: { type: type },
+      });
+
+      res.send({ result });
+    } catch (error) {
+      res.send(error);
+    }
+  },
+
+  addProduct: async (req, res) => {
+    const { name_products, type, price } = req.body;
 
     try {
-      const result = await User.create({
-        full_name,
-        email,
-        password,
+      const result = await Products.create({
+        name_products,
+        type,
+        price,
       });
       res.send({
         message: `Post data success`,
