@@ -1,5 +1,16 @@
 const { Products } = require("../../models");
 module.exports = {
+  getAllProducts: async (req, res) => {
+    try {
+      const results = await Products.findAll();
+
+      res.send({
+        results,
+      });
+    } catch (error) {
+      res.send(error);
+    }
+  },
   updateProducts: async (req, res) => {
     const { id } = req.params;
     const { name_products, type, price } = req.body;
@@ -43,7 +54,7 @@ module.exports = {
       res.send(error);
     }
   },
-  
+
   getProductName: async (req, res) => {
     const { name_products } = req.body;
     try {
@@ -78,7 +89,7 @@ module.exports = {
         name_products,
         type,
         price,
-        });
+      });
       res.send({
         message: `Post data success`,
         result: result,

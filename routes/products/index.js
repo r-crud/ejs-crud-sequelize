@@ -6,7 +6,8 @@ const {
   getAllProducts,
   getProductName,
   getProductType,
-    updateProducts, deleteProducts
+  updateProducts,
+  deleteProducts,
 } = require("./controller");
 
 router.get("/", getAllProducts);
