@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   res.send(`Welcome to sequelie & express demo`);
 });
-app.use("/api/users", require("./routes/users"));
+app.use("/api/products", require("./routes/products"));
 
 if (db) {
   app.listen(localPort, (req, res) => {
