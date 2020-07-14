@@ -1,16 +1,49 @@
 const { Products } = require("../../models");
 module.exports = {
-  getAllProducts: async (req, res) => {
+  updateProducts: async (req, res) => {
+    const { id } = req.params;
+    const { name_products, type, price } = req.body;
     try {
-      const results = await Products.findAll();
+      const results = await Products.update(
+        {
+          name_products,
+          type,
+          price,
+        },
+        {
+          where: {
+            idproducts: id,
+          },
+        }
+      );
 
       res.send({
-        results,
+        message: `Update data succcess`,
+        results: results,
       });
     } catch (error) {
       res.send(error);
     }
   },
+
+  deleteProducts: async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      const results = await Products.destroy({
+        where: {
+          idproducts: id,
+        },
+      });
+      res.send({
+        message: `Delete data succcess`,
+        results: results,
+      });
+    } catch (error) {
+      res.send(error);
+    }
+  },
+  
   getProductName: async (req, res) => {
     const { name_products } = req.body;
     try {
@@ -45,7 +78,7 @@ module.exports = {
         name_products,
         type,
         price,
-      });
+        });
       res.send({
         message: `Post data success`,
         result: result,
